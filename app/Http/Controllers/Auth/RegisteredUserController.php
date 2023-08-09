@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserInvitation;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -16,12 +17,23 @@ use App\Enums\Role;
  
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.register');
+        $email = null;
+ 
+        if ($request->has('invitation_token')) {
+            $token = $request->input('invitation_token');
+ 
+            session()->put('invitation_token', $token);
+ 
+            $invitation = UserInvitation::where('token', $token)
+                ->whereNull('registered_at')
+                ->firstOrFail();
+ 
+            $email = $invitation->email;
+        }
+ 
+        return view('auth.register', compact('email'));
     }
 
     /**
