@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
+
 use App\Models\User;
+use App\Models\UserInvitation;
 use App\Models\Company;
+
+use App\Mail\UserRegistrationInvite;
+
 use App\Http\Requests\StoreGuideRequest;
 use App\Http\Requests\UpdateGuideRequest;
+
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
  
 class CompanyGuideController extends Controller
 {
@@ -30,12 +38,14 @@ class CompanyGuideController extends Controller
     {
         $this->authorize('create', $company);
  
-        $company->users()->create([
-            'name' => $request->input('name'),
+        $invitation = UserInvitation::create([
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'token' => Str::uuid(),
+            'company_id' => $company->id,
             'role_id' => Role::GUIDE->value,
         ]);
+ 
+        Mail::to($request->input('email'))->send(new UserRegistrationInvite($invitation));
  
         return to_route('companies.guides.index', $company);
     }
