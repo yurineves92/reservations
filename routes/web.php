@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //Company
-    Route::resource('companies', CompanyController::class)->middleware('isAdmin');
+    Route::resource('companies', CompanyController::class)->middleware('isAdmin'); 
     Route::resource('companies.users', CompanyUserController::class)->except('show'); 
     Route::resource('companies.guides', CompanyGuideController::class)->except('show'); 
 });
