@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'role_id' => Role::ADMINISTRATOR->value,
         ]);
     }
-    /*
+
     public function companyOwner(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -47,5 +47,5 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'role_id' => Role::GUIDE->value,
         ]);
-    }*/
+    }
 }

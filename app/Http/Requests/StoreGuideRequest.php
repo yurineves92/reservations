@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rules;
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class StoreGuideRequest extends FormRequest
 {
