@@ -1,7 +1,8 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+        
+        <x-input-error :messages="$errors->get('invitation')" class="mt-2" /> 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
