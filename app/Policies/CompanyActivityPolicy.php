@@ -27,14 +27,6 @@ class CompanyActivityPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Activity $activity): void
-    {
-        //
-    }
-
-    /**
      * Determine whether the user can create models.
      */
     public function create(User $user, Company $company): bool
