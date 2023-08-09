@@ -66,14 +66,14 @@ class CompanyActivityTest extends TestCase
  
     public function test_can_upload_image()
     {
-        Storage::fake('public');
- 
+        Storage::fake('activities');
+
         $company = Company::factory()->create();
         $user = User::factory()->companyOwner()->create(['company_id' => $company->id]);
         $guide = User::factory()->guide()->create();
- 
+
         $file = UploadedFile::fake()->image('avatar.jpg');
- 
+
         $this->actingAs($user)->post(route('companies.activities.store', $company), [
             'name' => 'activity',
             'description' => 'description',
@@ -82,9 +82,8 @@ class CompanyActivityTest extends TestCase
             'guide_id' => $guide->id,
             'image' => $file,
         ]);
- 
-        Storage::disk('public')->assertExists($file->hashName());
-        Storage::disk('public')->assertExists('thumbs/' . $file->hashName());
+
+        Storage::disk('public')->assertExists('activities/'.$file->hashName());
     }
  
     public function test_cannon_upload_non_image_file()

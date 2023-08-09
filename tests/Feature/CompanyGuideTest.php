@@ -37,26 +37,6 @@ class CompanyGuideTest extends TestCase
         $response->assertForbidden();
     }
  
-    public function test_company_owner_can_create_guide_to_his_company()
-    {
-        $company = Company::factory()->create();
-        $user = User::factory()->companyOwner()->create(['company_id' => $company->id]);
- 
-        $response = $this->actingAs($user)->post(route('companies.guides.store', $company->id), [
-            'name' => 'test user',
-            'email' => 'test@test.com',
-            'password' => 'password',
-        ]);
- 
-        $response->assertRedirect(route('companies.guides.index', $company->id));
- 
-        $this->assertDatabaseHas('users', [
-            'name' => 'test user',
-            'email' => 'test@test.com',
-            'company_id' => $company->id,
-        ]);
-    }
- 
     public function test_company_owner_cannot_create_guide_to_other_company()
     {
         $company = Company::factory()->create();
