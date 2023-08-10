@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyGuideController;
 use App\Http\Controllers\CompanyUserController;
 use App\Http\Controllers\CompanyActivityController;
+use App\Http\Controllers\GuideActivityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyActivityController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/activities', [MyActivityController::class, 'show'])->name('my-activity.show');
+    Route::get('/guides/activities', [GuideActivityController::class, 'show'])->name('guide-activity.show'); 
+    Route::get('/guides/activities/{activity}/pdf', [GuideActivityController::class, 'export'])->name('guide-activity.export'); 
     Route::delete('/activities/{activity}', [MyActivityController::class, 'destroy'])->name('my-activity.destroy'); 
 
     //Company
