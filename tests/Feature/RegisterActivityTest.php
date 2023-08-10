@@ -91,7 +91,8 @@ class RegisterActivityTest extends TestCase
             'password_confirmation' => '123123123',
         ]);
  
-        Notification::assertSentTo(User::find(1), RegisteredToActivityNotification::class);
+        // add user exist in database
+        Notification::assertSentTo(User::find(2), RegisteredToActivityNotification::class);
  
         $response->assertRedirect(route('my-activity.show'));
     }
