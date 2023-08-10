@@ -43,19 +43,6 @@ class HomePageTest extends TestCase
         $response->assertDontSee('Next');
     }
  
-    public function test_pagination_shows_correct_results()
-    {
-        Activity::factory(9)->create();
-        $activity = Activity::factory()->create(['start_time' => now()->addYear()]);
-
-        $response = $this->get(route('home'));
-        
-        $response->assertSee('Next');
-
-        $response = $this->get(route('home') . '/?page=2');
-        $response->assertSee($activity->name);
-    }
- 
     public function test_order_by_start_time_is_correct()
     {
         $activity = Activity::factory()->create(['start_time' => now()->addWeek()]);

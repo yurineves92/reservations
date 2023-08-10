@@ -87,8 +87,8 @@ class RegisterActivityTest extends TestCase
         $response = $this->withSession(['activity' => $activity->id])->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@test.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => '123123123',
+            'password_confirmation' => '123123123',
         ]);
  
         Notification::assertSentTo(User::find(1), RegisteredToActivityNotification::class);
