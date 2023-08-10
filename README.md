@@ -49,6 +49,10 @@ O projeto incluirá testes automatizados para garantir a qualidade do código e 
 
 `php artisan test`
 
-## Estrutura do Projeto
+## Contribuições
 
-O projeto segue uma estrutura bem organizada para garantir legibilidade e manutenibilidade:
+Contribuições são bem-vindas! Se você deseja contribuir com o projeto, siga as diretrizes no arquivo CONTRIBUTING.md.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT.
