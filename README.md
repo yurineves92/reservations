@@ -1,4 +1,4 @@
-# Sistema de Reservas em Laravel com Testes
+# Sistema de Reservas em Laravel
 
 Este projeto tem como objetivo desenvolver um sistema abrangente de reservas utilizando o framework Laravel, incluindo testes automatizados. O objetivo é criar um sistema escalável e rico em recursos que facilite a gestão de clientes, atividades e detalhes de viagens. O sistema será projetado para gerar documentos em PDF para cada viagem e oferecer uma experiência de usuário perfeita tanto para os clientes quanto para os guias.
 
